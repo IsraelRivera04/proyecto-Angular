@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-body">
+    <div class="container mb-5 mt-3">
+      <div class="row d-flex align-items-baseline">
+        <div class="col-xl-9">
+          <p style="color: #7e8d9f;font-size: 20px;">Pedido &gt;&gt; <strong>ID: #{{ pedido?.id }}</strong></p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-md-12">
+          <div class="text-center">
+            <img id="LBG-logo" src="../../../assets/logo.png" alt="LBG Logo" draggable="false" height="120" />
+            <p class="pt-2">Lacrimosa Board Games</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-8">
+            <ul class="list-unstyled">
+              <li class="text-muted">Para: <span style="color:#8f8061 ;">{{ pedido?.usuario?.username }}</span></li>
+              <li class="text-muted">{{ pedido?.direccion }}</li>
+              <li class="text-muted"><i class="fas fa-phone"></i> {{ pedido?.telefono }}</li>
+            </ul>
+          </div>
+          <div class="col-xl-4">
+            <p class="text-muted">Detalles de la Factura</p>
+            <ul class="list-unstyled">
+              <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                  class="fw-bold">ID:</span> #{{ pedido?.id }}</li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                  class="fw-bold">Fecha:</span> {{ pedido?.created_at | date:'mediumDate' }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row my-2 mx-1 justify-content-center">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pedido?.items">
+                <img src="{{ item.producto.imagen}}" class="img-fluid rounded-3 producto-img" alt="{{ item.producto.imagen }}">
+                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.precio_unitario | number: '1.2-2' }}€</td>
+                <td>{{ (item.cantidad * item.precio_unitario) | number: '1.2-2' }}€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xl-8">
+            <p class="ms-3">Notas adicionales: <span style="color:#8f8061;">Información de pago pendiente.</span></p>
+          </div>
+          <div class="col-xl-3">
+            <ul class="list-unstyled">
+              <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>{{ pedido?.total | number: '1.2-2' }}€</li>
+              <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Envío</span>Gratis</li>
+            </ul>
+            <p class="text-black float-start"><span class="text-black me-3"> Total</span><span
+                style="font-size: 25px;">{{ pedido?.total | number: '1.2-2' }}€</span></p>
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <button class="btn btn-success" (click)="descargarPDF()">Descargar PDF</button>
+          <a routerLink="/" class="btn btn-secondary">Volver al Inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

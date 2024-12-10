@@ -1,0 +1,60 @@
+<section class="bg-light text-dark">
+    <!-- Banner Principal -->
+    <div class="container-fluid p-5 text-center bg-dark text-white">
+      <h1 class="display-4 fw-bold">Bienvenido a LBG</h1>
+      <p class="lead">Descubre, juega y comparte momentos inolvidables con nuestra colección de juegos de mesa y accesorios.</p>
+      <a href="/registro" class="btn btn-warning btn-lg fw-bold rounded-pill">Únete Ahora</a>
+    </div>
+  
+    <!-- Juegos Destacados -->
+    <div class="container py-5">
+      <h2 class="text-center mb-4 fw-bold text-dark">Juegos Destacados</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let juego of juegosDestacados">
+          <div class="card h-100 shadow-lg border-0 rounded-4">
+            <img src="{{ juego.imagen }}" class="card-img-top rounded-top-4" alt="{{ juego.nombre }}" />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+              <p class="card-text text-muted">{{ juego.descripcion }}</p>
+              <a [routerLink]="['/juegos', juego.id]" class="btn btn-primary w-100">Ver Detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Complementos -->
+    <div class="container py-5 bg-light">
+      <h2 class="text-center mb-4 fw-bold text-dark">Complementos Destacados</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let complemento of complementosPopulares">
+          <div class="card h-100 shadow-lg border-0 rounded-4">
+            <img src="{{ complemento.imagen }}" class="card-img-top rounded-top-4" alt="{{ complemento.nombre }}" />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{ complemento.nombre }}</h5>
+              <p class="card-text text-muted">{{ complemento.descripcion }}</p>
+              <a [routerLink]="['/complementos', complemento.id]" class="btn btn-primary w-100">Explorar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Próximos Eventos -->
+    <div class="container py-5">
+      <h2 class="text-center mb-4 fw-bold text-dark">Próximos Eventos</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" *ngFor="let evento of proximosEventos">
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-dark">{{ evento.nombre }}</h5>
+              <p class="card-text text-muted">{{ evento.descripcion }}</p>
+              <p class="text-muted"><strong>Fecha:</strong> {{ evento.fecha | date }}</p>
+              <a [routerLink]="['/eventos', evento.id]" class="btn btn-primary">Más Información</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

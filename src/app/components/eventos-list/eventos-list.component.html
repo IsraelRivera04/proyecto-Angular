@@ -1,0 +1,71 @@
+<section style="background-color: #eee;">
+  <div class="text-center container py-5">
+    <h4 class="mt-4 mb-5"><strong>Eventos</strong></h4>
+
+    <!-- Botones para alternar vistas -->
+    <div class="mb-3 text-center">
+      <button class="btn btn-primary" [class.active]="vista === 'lista'" (click)="cambiarVista('lista')">
+        Lista de Eventos
+      </button>
+      <button class="btn btn-secondary" [class.active]="vista === 'calendario'" (click)="cambiarVista('calendario')">
+        Calendario
+      </button>
+    </div>
+
+    <!-- Spinner de carga -->
+    <div *ngIf="cargando" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </div>
+
+    <!-- Vista de Lista -->
+<div *ngIf="!cargando && vista === 'lista'">
+  <div *ngIf="eventos.length > 0; else noEventos">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let evento of eventos">
+        <div class="card">
+          <!-- Imagen con redirección al detalle del evento -->
+          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+            <a [routerLink]="['/eventos', evento.id]">
+              <img [src]="evento.imagen || 'https://via.placeholder.com/400x250?text=Sin+Imagen'" 
+                   class="w-100" alt="{{ evento.title }}" 
+                   style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            </a>
+            <div class="mask">
+              <div class="d-flex justify-content-start align-items-end h-100">
+                <h5><span class="badge bg-primary ms-2">{{ evento.tipo }}</span></h5>
+              </div>
+            </div>
+            <div class="hover-overlay">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <!-- Título sin enlace -->
+            <h5 class="card-title mb-3">{{ evento.title }}</h5>
+            <p>{{ evento.descripcion }}</p>
+            <p class="text-muted">Fecha: {{ evento.fecha | date:'dd/MM/yyyy' }}</p>
+            <p class="text-muted">Hora: {{ evento.start | date:'HH:mm' }} - {{ evento.end | date:'HH:mm' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noEventos>
+    <p>No hay eventos disponibles.</p>
+  </ng-template>
+</div>
+
+  </div>
+</section>
+
+  <!-- Vista de Calendario -->
+<div class="container mt-5">
+  <div *ngIf="!cargando && vista === 'calendario'">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
+</div>
+

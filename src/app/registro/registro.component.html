@@ -1,0 +1,80 @@
+<section class="h-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <!-- Información lateral -->
+            <div class="col-lg-6 d-flex align-items-center bg-light gradient-custom-2">
+              <div class="text-black px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Únete a nuestra comunidad</h4>
+                <p class="small mb-0">
+                  En LBG, descubrirás una amplia gama de juegos de mesa para todos los gustos. 
+                  Regístrate para explorar nuestras colecciones y ser parte de la experiencia de juego.
+                </p>
+              </div>
+            </div>
+            <!-- Formulario -->
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                  <img src="../../../assets/logo.png" style="width: 185px;" alt="LBG Logo">
+                  <h4 class="mt-1 mb-5 pb-1">Regístrate en LBG</h4>
+                </div>
+                <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+                  <div class="form-outline mb-4">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      id="username"
+                      formControlName="username"
+                      class="form-control"
+                      placeholder="Introduce tu nombre de usuario"
+                      required
+                    />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input
+                      type="email"
+                      id="email"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="Introduce tu correo electrónico"
+                      required
+                    />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      class="form-control"
+                      placeholder="Introduce tu contraseña"
+                      required
+                    />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      formControlName="confirmPassword"
+                      class="form-control"
+                      placeholder="Confirma tu contraseña"
+                      required
+                    />
+                  </div>
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg mb-3" type="submit" [disabled]="registroForm.invalid">Registrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

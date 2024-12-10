@@ -1,0 +1,19 @@
+.btn-primary {
+    background-color: #002147;
+    border-color: #002147;
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .text-primary {
+    color: #0056b3 !important;
+  }
+  
+  footer {
+    background: #002147;
+    color: white;
+  }
+  

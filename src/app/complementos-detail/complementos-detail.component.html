@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center container mt-5">
+  <div class="card p-3 bg-white w-100" style="max-width: 400px;">
+    <i class="fas fa-chess"></i>
+
+    <div class="about-product text-center mt-2">
+      <img [src]="complemento.imagen" alt="{{ complemento.nombre }}" class="img-fluid" onerror="this.src='https://via.placeholder.com/400x250?text=Imagen+no+disponible';">
+      <div>
+        <h4>{{ complemento.nombre }}</h4>
+        <h6 class="mt-0 text-black-50">{{ complemento.descripcion }}</h6>
+      </div>
+    </div>
+
+    <div class="stats mt-2">
+      <div class="d-flex justify-content-between p-price">
+        <span>Precio</span>
+        <span>{{ complemento.precio | currency:'EUR' }}</span> <!-- Aquí usamos 'EUR' -->
+      </div>
+
+      <div class="d-flex justify-content-between p-price">
+        <span>Stock</span>
+        <span>{{ complemento.stock > 0 ? 'Disponible: ' + complemento.stock : 'Agotado' }}</span>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-primary" [disabled]="complemento.stock === 0" (click)="agregarAlCarrito(complemento)">
+        {{ complemento.stock > 0 ? 'Añadir al Carrito' : 'No Disponible' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+  

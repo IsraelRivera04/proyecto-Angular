@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center container mt-5">
+  <div class="card p-3 bg-white w-100" style="max-width: 400px;">
+    <i class="fa fa-dice"></i>
+
+    <div class="about-product text-center mt-2">
+      <img
+        [src]="juego.imagen"
+        alt="{{ juego.nombre }}"
+        class="img-fluid"
+        onerror="this.src='https://via.placeholder.com/400x250?text=Imagen+no+disponible';"
+      >
+      <div>
+        <h4>{{ juego.nombre }}</h4>
+        <h6 class="mt-0 text-black-50">{{ juego.descripcion }}</h6>
+      </div>
+    </div>
+
+    <div class="stats mt-2">
+      <div class="d-flex justify-content-between p-price">
+        <span>Precio</span>
+        <span>{{ juego.precio | currency:'EUR' }}</span>
+      </div>
+
+      <div class="d-flex justify-content-between p-price">
+        <span>Stock</span>
+        <span>{{ juego.stock > 0 ? 'Disponible: ' + juego.stock : 'Agotado' }}</span>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-primary" [disabled]="juego.stock === 0" (click)="agregarAlCarrito(juego)">
+        {{ juego.stock > 0 ? 'Añadir al Carrito' : 'No Disponible' }}
+      </button>
+    </div>
+
+    <!-- Formulario de Comentarios -->
+    <div class="comentario-form mt-4">
+      <form [formGroup]="comentarioForm" (ngSubmit)="enviarComentario()">
+        <div>
+          <label for="comentario">Comentario</label>
+          <textarea
+            id="comentario"
+            formControlName="comentario"
+            placeholder="Escribe tu comentario"
+          ></textarea>
+          <div *ngIf="comentarioForm.get('comentario')?.invalid && comentarioForm.get('comentario')?.touched">
+            <small>El comentario es obligatorio y no debe exceder 1000 caracteres.</small>
+          </div>
+        </div>
+
+        <div>
+          <label for="valoracion">Valoración</label>
+          <input
+            id="valoracion"
+            type="number"
+            formControlName="valoracion"
+            placeholder="Califica entre 1 y 10"
+          />
+          <div *ngIf="comentarioForm.get('valoracion')?.invalid && comentarioForm.get('valoracion')?.touched">
+            <small>La valoración es obligatoria y debe estar entre 1 y 10.</small>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="comentarioForm.invalid">Enviar</button>
+      </form>
+      <div class="comentarios mt-4">
+        <h5>Comentarios:</h5>
+        <div *ngIf="comentarios.length === 0">
+          <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+        </div>
+        <div *ngFor="let comentario of comentarios" class="comentario mb-2">
+          <div class="card p-2" style="font-size: 0,9rem; line-height: 1.4;">
+            <h6>{{ comentario.usuario?.username || 'Anónimo' }}</h6>
+            <p>{{ comentario.comentario }}</p>
+            <div class="text-muted">
+              Valoración: {{ comentario.valoracion }} / 10
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+
+
+

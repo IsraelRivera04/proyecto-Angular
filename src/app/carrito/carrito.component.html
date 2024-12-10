@@ -1,0 +1,68 @@
+<section class="h-100" *ngIf="carrito && carrito.items.length > 0; else carritoVacio">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0">Carrito de Compras</h3>
+          <p class="mb-0">
+            <span class="text-muted">Ordenar por:</span>
+            <a href="#" class="text-body">precio <i class="fas fa-angle-down mt-1"></i></a>
+          </p>
+        </div>
+
+
+        <div class="card rounded-3 mb-4" *ngFor="let item of carrito.items">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img [src]="item.producto.imagen || 'ruta/por_defecto.jpg'" class="img-fluid rounded-3" alt="{{ item.producto.nombre }}">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">{{ item.producto.nombre }}</p>
+                <p><span class="text-muted">Descripción: </span>{{ item.producto.descripcion }}</p>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <button class="btn btn-link px-2" (click)="actualizarCantidad(item, 'decrementar')">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" [(ngModel)]="item.cantidad" min="1" class="form-control form-control-sm" />
+                <button class="btn btn-link px-2" (click)="actualizarCantidad(item, 'incrementar')">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h5 class="mb-0">{{ item.precio_unitario | currency:'EUR' }}</h5>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <button class="btn btn-danger btn-sm" (click)="eliminarItem(item)">
+                  <i class="fas fa-trash fa-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-body">
+            <h3>Total a Pagar: {{ total | currency:'EUR' }}</h3>
+            <button class="btn btn-danger me-2" (click)="vaciarCarrito()">Vaciar Carrito</button>
+            <a routerLink="/compra-finalizar" class="btn btn-success">Finalizar Compra</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<ng-template #carritoVacio>
+  <div class="container text-center py-5">
+    <h3>Tu carrito está vacío</h3>
+    <a routerLink="/juegos" class="btn btn-primary mt-4">Ir a Juegos</a>
+  </div>
+</ng-template>
+
+
+
+

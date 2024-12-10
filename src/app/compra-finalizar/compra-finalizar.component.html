@@ -1,0 +1,105 @@
+<section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0">Finalizar Compra</h3>
+          <div>
+            <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
+                  class="fas fa-angle-down mt-1"></i></a></p>
+          </div>
+        </div>
+
+        <div class="card mt-5">
+          <div class="card-body">
+            <h4>Ya casi lo tienes, ¡completa estos campos y finaliza la compra!</h4>
+            <form (ngSubmit)="confirmarCompra()" #compraForm="ngForm">
+              <div class="form-group">
+                <label for="direccion">Dirección de Envío</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="direccion"
+                  name="direccion"
+                  [(ngModel)]="direccion"
+                  required
+                />
+              </div>
+
+
+              <div class="form-group mt-3">
+                <label for="telefono">Teléfono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefono"
+                  name="telefono"
+                  [(ngModel)]="telefono"
+                  required
+                />
+              </div>
+
+
+              <div class="form-group mt-3">
+                <label for="metodo_pago">Método de Pago</label>
+                <select
+                  class="form-control"
+                  id="metodo_pago"
+                  name="metodo_pago"
+                  [(ngModel)]="metodoPago"
+                  required
+                >
+                  <option value="tarjeta">Tarjeta de Crédito</option>
+                  <option value="paypal">PayPal</option>
+                </select>
+              </div>
+
+
+              <button type="submit" class="btn btn-warning btn-block btn-lg mt-4">Confirmar Compra</button>
+            </form>
+          </div>
+        </div>
+
+
+        <!-- Carrito -->
+        <div *ngIf="carrito?.carrito?.items?.length > 0; else vacio">
+          <div *ngFor="let item of carrito.carrito.items" class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img src="{{ item.producto.imagen}}" class="img-fluid rounded-3" alt="{{ item.producto.imagen }}">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                  <p class="lead fw-normal mb-2">{{ item.producto.nombre }}</p>
+                  <p><span class="text-muted">Cantidad: </span>{{ item.cantidad }}</p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                  <h5 class="mb-0">{{ item.precio_unitario * item.cantidad }}€</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Mensaje si el carrito está vacío -->
+        <ng-template #vacio>
+          <div class="card">
+            <div class="card-body text-center">
+              <h5>Tu carrito está vacío.</h5>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  
+  
