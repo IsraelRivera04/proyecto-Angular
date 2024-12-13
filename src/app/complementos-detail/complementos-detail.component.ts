@@ -23,7 +23,7 @@ export class ComplementosDetailComponent implements OnInit {
     if (id) {
       this.complementoService.getComplementoById(id).subscribe(
         (data) => {
-          this.complemento = data; // Asignar los datos del juego
+          this.complemento = data; 
         },
         (error) => {
           console.error('Error al obtener el complemento:', error);

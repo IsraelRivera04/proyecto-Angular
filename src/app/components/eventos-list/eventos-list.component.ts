@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
-// Importar plugins de FullCalendar
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
@@ -13,10 +11,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 })
 export class EventosListComponent implements OnInit {
   eventos: any[] = [];
-  vista: string = 'lista';  // Vista predeterminada es 'lista'
+  vista: string = 'lista'; 
   cargando: boolean = true;
-
-  // Configuración del calendario
   calendarOptions: any = {
     plugins: [dayGridPlugin, timeGridPlugin],
     initialView: 'dayGridMonth',
@@ -26,7 +22,7 @@ export class EventosListComponent implements OnInit {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     events: [],
-    eventClick: (info: any) => this.verDetalleEvento(info)  // Al hacer clic en un evento
+    eventClick: (info: any) => this.verDetalleEvento(info)
   };
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -44,14 +40,12 @@ export class EventosListComponent implements OnInit {
           title: evento.nombre,
           description: evento.descripcion,
           fecha: evento.fecha,
-          start: evento.fecha + 'T' + evento.hora_inicio, // Combina fecha y hora de inicio
-          end: evento.fecha + 'T' + evento.hora_final,   // Combina fecha y hora de finalización
-          imagen: evento.imagen || 'https://via.placeholder.com/150', // Imagen por defecto si no existe
+          start: evento.fecha + 'T' + evento.hora_inicio, 
+          end: evento.fecha + 'T' + evento.hora_final,  
+          imagen: evento.imagen || 'https://via.placeholder.com/150',
         }));
+        console.log(this.eventos); 
 
-        console.log(this.eventos);  // Ver los eventos en la consola
-
-        // Asignamos los eventos al calendario
         this.calendarOptions.events = this.eventos;
         this.cargando = false;
       },
@@ -62,15 +56,13 @@ export class EventosListComponent implements OnInit {
     );
   }
 
-  // Ver detalles del evento al hacer clic en el calendario
   verDetalleEvento(info: any): void {
-    const eventoId = info.event.id; // Obtener el ID del evento
+    const eventoId = info.event.id; 
     if (eventoId) {
-      this.router.navigate(['/eventos', eventoId]); // Redirigir al detalle del evento
+      this.router.navigate(['/eventos', eventoId]);
     }
   }
 
-  // Cambiar entre las vistas de 'lista' y 'calendario'
   cambiarVista(vista: string): void {
     this.vista = vista;
   }

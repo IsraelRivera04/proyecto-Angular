@@ -8,24 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = '';
+  username = '';
   password = '';
   errorMessage = '';
 
   constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit() {
-    this.apiService.login(this.email, this.password).subscribe(
+    this.apiService.login(this.username, this.password).subscribe(
       (response) => {
-        // Aquí agregamos el console.log
-        console.log('Login exitoso:', response); // Imprimir la respuesta del backend
+        console.log('Login exitoso:', response);
         
-        localStorage.setItem('token', response.token); // Guardar el token en el almacenamiento local
-        this.router.navigate(['/juegos']); // Redirigir a la página principal
+        localStorage.setItem('token', response.token); 
+        this.router.navigate(['/juegos']);
       },
       (error) => {
-        console.error('Error en login:', error); // Imprimir cualquier error en consola
-        this.errorMessage = 'Credenciales inválidas'; // Mostrar mensaje de error
+        console.error('Error en login:', error); 
+        console.log(this.username, this.password);
+        this.errorMessage = 'Credenciales inválidas'; 
       }
     );
   }

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://laravel.lo/api/register'; // Ajusta la URL a la de tu API
+  private apiUrl = 'http://laravel.lo/api/register';
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -26,7 +26,7 @@ export class AuthService {
         data => {
           localStorage.setItem('currentUser', JSON.stringify(data));
           this.currentUserSubject.next(data);
-          this.router.navigate(['/juegos']); // Redirigir a una página segura después de login
+          this.router.navigate(['/juegos']);
         },
         error => {
           console.error(error);

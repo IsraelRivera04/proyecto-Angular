@@ -10,12 +10,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todos los datos de usuarios
   obtenerUsuarios(): Observable<any> {
     return this.http.get(`${this.apiUrl}/usuarios`);
   }
 
-  // Obtener los datos del usuario autenticado
   obtenerUsuarioAutenticado(): Observable<any> {
     return this.http.get(`${this.apiUrl}/usuarios/me`);
   }

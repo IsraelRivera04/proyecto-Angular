@@ -7,7 +7,7 @@ import { UsuarioService } from '../usuario.service';
   styleUrls: ['./cuenta.component.css']
 })
 export class CuentaComponent implements OnInit {
-  usuario: any = {}; // Datos del usuario logueado
+  usuario: any = {};
 
   constructor(private usuarioService: UsuarioService) {}
 
@@ -15,7 +15,6 @@ export class CuentaComponent implements OnInit {
     this.cargarUsuarioAutenticado();
   }
 
-  // Método para cargar datos del usuario logueado
   cargarUsuarioAutenticado(): void {
     this.usuarioService.obtenerUsuarioAutenticado().subscribe(
       (data) => {
@@ -29,12 +28,10 @@ export class CuentaComponent implements OnInit {
 
   editarDatos() {
     console.log('Editar datos del usuario');
-    // Aquí puedes redirigir al formulario de edición
   }
 
   cerrarSesion() {
     console.log('Cerrar sesión');
-    localStorage.removeItem('token'); // Eliminar token al cerrar sesión
-    // Navegar a la página de login o inicio
+    localStorage.removeItem('token');
   }
 }

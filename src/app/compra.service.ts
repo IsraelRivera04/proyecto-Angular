@@ -2,24 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class CompraService {
   private apiUrl = 'http://laravel.lo/api';
 
-
   constructor(private http: HttpClient) {}
 
-
-  // Obtén el token desde localStorage (o donde lo guardes)
   private getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-
-  // Genera headers con el token
   private getHeaders(): HttpHeaders {
     const token = this.getToken();
     let headers = new HttpHeaders();
@@ -45,7 +39,6 @@ export class CompraService {
   descargarPDF(pedidoId: number): void {
     const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
     const url = `${this.apiUrl}/compra/descargarPDF/${pedidoId}`;
-    // Crear una ventana con la solicitud y el token
     const pdfWindow = window.open('', '_blank');
     fetch(url, { headers })
       .then((response) => response.blob())
@@ -59,8 +52,6 @@ export class CompraService {
         console.error('Error al descargar el PDF:', error);
       });
   }
-  
-  
 }
 
 

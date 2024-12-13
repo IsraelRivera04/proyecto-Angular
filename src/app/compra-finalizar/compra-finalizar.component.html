@@ -3,7 +3,6 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-10">
 
-
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="fw-normal mb-0">Finalizar Compra</h3>
           <div>
@@ -28,7 +27,6 @@
                 />
               </div>
 
-
               <div class="form-group mt-3">
                 <label for="telefono">Teléfono</label>
                 <input
@@ -40,7 +38,6 @@
                   required
                 />
               </div>
-
 
               <div class="form-group mt-3">
                 <label for="metodo_pago">Método de Pago</label>
@@ -56,14 +53,11 @@
                 </select>
               </div>
 
-
               <button type="submit" class="btn btn-warning btn-block btn-lg mt-4">Confirmar Compra</button>
             </form>
           </div>
         </div>
 
-
-        <!-- Carrito -->
         <div *ngIf="carrito?.carrito?.items?.length > 0; else vacio">
           <div *ngFor="let item of carrito.carrito.items" class="card rounded-3 mb-4">
             <div class="card-body p-4">
@@ -83,8 +77,6 @@
           </div>
         </div>
 
-
-        <!-- Mensaje si el carrito está vacío -->
         <ng-template #vacio>
           <div class="card">
             <div class="card-body text-center">

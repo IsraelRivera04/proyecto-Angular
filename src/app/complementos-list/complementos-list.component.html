@@ -1,17 +1,27 @@
 <section style="background-color: #eee;">
   <div class="container py-5">
-    <!-- Título principal -->
     <div class="text-center mb-5">
       <h1 class="display-4 fw-bold text-primary">Explora Nuestros Complementos</h1>
       <p class="lead text-muted">Accesorios, tapetes, insertos y más para enriquecer tu experiencia de juego.</p>
     </div>
 
-    <!-- Listado de complementos -->
+    <div class="d-flex justify-content-center mb-4">
+      <select class="form-select w-auto" (change)="cambiarOrdenNombre($event)">
+        <option value="">Ordenar por Nombre</option>
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
+      </select>
+      <select class="form-select w-auto ms-3" (change)="cambiarOrdenPrecio($event)">
+        <option value="">Ordenar por Precio</option>
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
+      </select>
+    </div>
+
     <div *ngIf="complementos.length > 0; else noComplementos">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col" *ngFor="let complemento of complementos">
           <div class="card h-100 shadow-lg border-0 rounded-4">
-            <!-- Imagen del complemento -->
             <div class="position-relative">
               <a [routerLink]="['/complementos', complemento.id]">
                 <img
@@ -22,13 +32,11 @@
                   style="cursor: pointer;"
                 />
               </a>
-              <!-- Etiqueta de oferta -->
               <span *ngIf="complemento.oferta" class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 fs-6">
                 Oferta
               </span>
             </div>
 
-            <!-- Detalles del complemento -->
             <div class="card-body">
               <h5 class="card-title text-center fw-bold text-dark">{{ complemento.nombre }}</h5>
               <p class="card-text text-muted text-justify">{{ complemento.descripcion }}</p>
@@ -43,7 +51,6 @@
               </div>
             </div>
 
-            <!-- Botón de acción -->
             <div class="card-footer bg-transparent border-0 text-center">
               <button
                 class="btn btn-primary w-100 fw-bold rounded-pill"
@@ -58,7 +65,6 @@
       </div>
     </div>
 
-    <!-- Mensaje de complementos no disponibles -->
     <ng-template #noComplementos>
       <div class="text-center py-5">
         <h3 class="text-muted">No hay complementos disponibles en este momento.</h3>
@@ -67,3 +73,5 @@
     </ng-template>
   </div>
 </section>
+
+

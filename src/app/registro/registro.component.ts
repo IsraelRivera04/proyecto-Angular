@@ -19,7 +19,6 @@ export class RegistroComponent {
     }, { validators: this.passwordMatchValidator });
   }
 
-  // Validador de contraseñas
   passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
     if (group.get('password')?.value !== group.get('confirmPassword')?.value) {
       return { mismatch: true };
