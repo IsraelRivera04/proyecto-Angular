@@ -22,6 +22,15 @@ export class JuegoService {
     const params = { orden_nombre: ordenNombre, tipo: tipo };
     return this.http.get<any>(`${this.apiUrl}/juegos`, { params });
   }
+
+  buscarJuegos(term: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/juegos/buscar`, {
+      params: { term }
+    });
+  }
+  
+  
+  
   }
 
 

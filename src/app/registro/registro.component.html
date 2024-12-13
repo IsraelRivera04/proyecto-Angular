@@ -8,7 +8,7 @@
               <div class="text-black px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Únete a nuestra comunidad</h4>
                 <p class="small mb-0">
-                  En LBG, descubrirás una amplia gama de juegos de mesa para todos los gustos. 
+                  En LBG, descubrirás una amplia gama de juegos de mesa para todos los gustos.
                   Regístrate para explorar nuestras colecciones y ser parte de la experiencia de juego.
                 </p>
               </div>
@@ -30,6 +30,9 @@
                       placeholder="Introduce tu nombre de usuario"
                       required
                     />
+                    <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched" class="text-danger">
+                      <small *ngIf="registroForm.get('username')?.hasError('required')">El nombre de usuario es obligatorio.</small>
+                    </div>
                   </div>
                   <div class="form-outline mb-4">
                     <label for="email" class="form-label">Correo electrónico</label>
@@ -41,6 +44,10 @@
                       placeholder="Introduce tu correo electrónico"
                       required
                     />
+                    <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="text-danger">
+                      <small *ngIf="registroForm.get('email')?.hasError('required')">El correo electrónico es obligatorio.</small>
+                      <small *ngIf="registroForm.get('email')?.hasError('email')">Introduce un correo electrónico válido.</small>
+                    </div>
                   </div>
                   <div class="form-outline mb-4">
                     <label for="password" class="form-label">Contraseña</label>
@@ -52,6 +59,10 @@
                       placeholder="Introduce tu contraseña"
                       required
                     />
+                    <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched" class="text-danger">
+                      <small *ngIf="registroForm.get('password')?.hasError('required')">La contraseña es obligatoria.</small>
+                      <small *ngIf="registroForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres.</small>
+                    </div>
                   </div>
                   <div class="form-outline mb-4">
                     <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
@@ -63,6 +74,10 @@
                       placeholder="Confirma tu contraseña"
                       required
                     />
+                    <div *ngIf="registroForm.get('confirmPassword')?.invalid && registroForm.get('confirmPassword')?.touched" class="text-danger">
+                      <small *ngIf="registroForm.get('confirmPassword')?.hasError('required')">Por favor, confirma tu contraseña.</small>
+                      <small *ngIf="registroForm.get('confirmPassword')?.hasError('mismatch')">Las contraseñas no coinciden.</small>
+                    </div>
                   </div>
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg mb-3" type="submit" [disabled]="registroForm.invalid">Registrar</button>
@@ -76,3 +91,5 @@
     </div>
   </div>
 </section>
+
+

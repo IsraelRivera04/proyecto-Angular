@@ -17,6 +17,22 @@
 
     <div class="stats mt-2">
       <div class="d-flex justify-content-between p-price">
+        <span>Año de publicación:</span>
+        <span>{{ juego.ano_publicacion || 'No especificado' }}</span>
+      </div>
+      <div class="d-flex justify-content-between p-price">
+        <span>Diseñador:</span>
+        <span>{{ juego.disenador || 'No especificado' }}</span>
+      </div>
+      <div class="d-flex justify-content-between p-price">
+        <span>Duración:</span>
+        <span>{{ juego.duracion_aprox || 'No especificada' }} min</span>
+      </div>
+      <div class="d-flex justify-content-between p-price">
+        <span>Número de Jugadores:</span>
+        <span>{{ juego.num_jugadores_min || 'No especificada' }} - {{ juego.num_jugadores_max}} jugadores</span>
+      </div>
+      <div class="d-flex justify-content-between p-price">
         <span>Precio</span>
         <span>{{ juego.precio | currency:'EUR' }}</span>
       </div>

@@ -1,5 +1,6 @@
 <section style="background-color: #eee;">
   <div class="container py-5">
+    <!-- Barra de búsqueda -->
     <div class="row justify-content-center mb-3">
       <div class="col-md-12 col-xl-10">
         <div class="card">
@@ -7,6 +8,11 @@
             <h5>Filtros</h5>
           </div>
           <div class="card-body">
+            <!-- Barra de búsqueda -->
+            <div class="d-flex justify-content-between mb-3">
+              <label for="buscarNombre" class="form-label">Buscar por nombre:</label>
+              <input id="buscarNombre" type="text" class="form-control" [(ngModel)]="searchTerm" (input)="filtrarJuegos()" placeholder="Buscar juego..." />
+            </div>
             <div class="d-flex justify-content-between mb-3">
               <label for="ordenNombre" class="form-label">Ordenar por nombre:</label>
               <select id="ordenNombre" class="form-select" (change)="cambiarOrdenNombre($event)" [disabled]="isPrecioOrdenado">
@@ -26,8 +32,9 @@
       </div>
     </div>
 
+    <!-- Listado de juegos -->
     <div class="row justify-content-center mb-3">
-      <div class="col-md-12 col-xl-10" *ngFor="let juego of juegos">
+      <div class="col-md-12 col-xl-10" *ngFor="let juego of juegosFiltrados">
         <div class="card shadow-0 border rounded-3">
           <div class="card-body">
             <div class="row">
@@ -45,20 +52,21 @@
                 <h5>{{ juego.nombre }}</h5>
                 <div class="d-flex flex-row align-items-center">
                   <div class="text-warning mb-1 me-2">
-                    <i class="fa fa-star" *ngFor="let star of [].constructor(juego.valoracion)"></i>
+                    <i class="fa fa-person"></i>
                   </div>
-                  <span class="small text-muted">{{ juego.numValoraciones }} valoraciones</span>
+                  <span class="small text-muted">{{ juego.num_jugadores_min }} - {{ juego.num_jugadores_max }} jugadores</span>
                 </div>
                 <div class="mt-1 mb-0 text-muted small">
-                  <span>{{ juego.categoria }}</span>
+                  <div>
                   <span class="text-primary"> • </span>
-                  <span>{{ juego.duracion }}</span>
+                  <span>{{ juego.duracion_aprox }} minutos</span>
+                  </div>
+
                   <span class="text-primary"> • </span>
-                  <span>{{ juego.edadRecomendada }}+ años</span>
+                  <span>{{ juego.edad_recomendada }}+ años</span>
                 </div>
                 <p class="text-truncate mb-4 mb-md-0">{{ juego.descripcion }}</p>
               </div>
-
               <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                 <div class="d-flex flex-row align-items-center mb-1">
                   <h4 class="mb-1 me-1">
