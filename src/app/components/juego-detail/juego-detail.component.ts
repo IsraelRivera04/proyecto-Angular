@@ -12,6 +12,7 @@ import { ComentariosService } from '../../comentarios.service';
 })
 export class JuegoDetailComponent implements OnInit {
   juego: any;
+  complementos: any[] = [];
   comentarios: any[] = [];
   comentarioForm: FormGroup;
   isLoggedIn: boolean = false;
@@ -34,8 +35,9 @@ export class JuegoDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.juegoService.getJuegoById(id).subscribe(
-        (data) => {
-          this.juego = data;
+        (response) => {
+          this.juego = response.juego;
+          this.complementos = response.complementos;
           this.obtenerComentarios(this.juego.id);
         },
         (error) => {

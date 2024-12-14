@@ -91,9 +91,37 @@
               Valoración: {{ comentario.valoracion }} / 10
             </div>
           </div>
-        </div>
+        </div> 
       </div>      
     </div>
+  </div>
+</div>
+<div class="col-12 mt-4" *ngIf="complementos.length > 0">
+  <h5 class="text-center">Complementos disponibles:</h5>
+  <div class="d-flex justify-content-center container mt-5">
+      <div class="card p-3 bg-white w-100" style="max-width: 400px;" *ngFor="let complemento of complementos">
+          <i class="fas fa-chess"></i>
+
+          <div class="about-product text-center mt-2">
+              <img [src]="complemento.imagen" alt="{{ complemento.nombre }}" class="img-fluid" onerror="this.src='https://via.placeholder.com/400x250?text=Imagen+no+disponible';">
+              <div>
+                  <h4>{{ complemento.nombre }}</h4>
+              </div>
+          </div>
+
+          <div class="stats mt-2">
+              <div class="d-flex justify-content-between p-price">
+                  <span>Stock</span>
+                  <span>{{ complemento.stock > 0 ? 'Disponible: ' + complemento.stock : 'Agotado' }}</span>
+              </div>
+          </div>
+
+          <div class="text-center mt-3">
+              <a [routerLink]="['/complementos', complemento.id]" class="btn btn-primary">
+                  Ver detalles
+              </a>
+          </div>
+      </div>
   </div>
 </div>
 
